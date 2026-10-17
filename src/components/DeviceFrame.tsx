@@ -8,6 +8,7 @@ import {
   LogIn,
   GraduationCap,
   ChevronDown,
+  Download,
 } from 'lucide-react';
 import { ScreenId, GradeLevel, AuthUser, StudentProfile } from '../types';
 
@@ -24,6 +25,7 @@ interface DeviceFrameProps {
   activeStudent: StudentProfile | null;
   onOpenSiblingModal: () => void;
   onOpenAuthModal: () => void;
+  onOpenApkModal: () => void;
 }
 
 const SCREEN_TABS: { id: ScreenId; label: string; icon: string }[] = [
@@ -53,6 +55,7 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
   activeStudent,
   onOpenSiblingModal,
   onOpenAuthModal,
+  onOpenApkModal,
 }) => {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-start p-2 sm:p-4">
@@ -150,6 +153,16 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
               </option>
             </select>
           </div>
+
+          {/* Generate APK / Install App Button */}
+          <button
+            onClick={onOpenApkModal}
+            className="flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white rounded-xl text-xs font-bold shadow-md shadow-emerald-500/20 active:scale-95 transition-all"
+            title="Download Android APK / Install WebAPK"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Generate APK</span>
+          </button>
 
           {/* Mode Switcher */}
           <button

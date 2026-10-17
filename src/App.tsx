@@ -34,6 +34,7 @@ import { AuthModal } from './components/auth/AuthModal';
 import { SiblingSwitcherModal } from './components/SiblingSwitcherModal';
 import { CreateChannelModal } from './components/channels/CreateChannelModal';
 import { ChannelDetailModal } from './components/channels/ChannelDetailModal';
+import { ApkExportModal } from './components/ApkExportModal';
 
 // Screens
 import { SwipeLearnFeed } from './components/screens/SwipeLearnFeed';
@@ -58,6 +59,7 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState<AuthUser>(DEFAULT_AUTH_USER);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showSiblingModal, setShowSiblingModal] = useState(false);
+  const [showApkModal, setShowApkModal] = useState(false);
 
   // Community Channels State
   const [channels, setChannels] = useState<CommunityChannel[]>(INITIAL_CHANNELS);
@@ -473,7 +475,14 @@ export default function App() {
       activeStudent={activeStudent}
       onOpenSiblingModal={() => setShowSiblingModal(true)}
       onOpenAuthModal={() => setShowAuthModal(true)}
+      onOpenApkModal={() => setShowApkModal(true)}
     >
+      {/* Android APK & PWA Generator Modal */}
+      <ApkExportModal
+        isOpen={showApkModal}
+        onClose={() => setShowApkModal(false)}
+      />
+
       {/* Top Banner Alert when background video completes */}
       <TopNotificationBanner
         video={readyVideoNotification}
@@ -655,6 +664,7 @@ export default function App() {
             currentGrade={currentGrade}
             onUpdateProfile={(updated) => setUserProfile((p) => ({ ...p, ...updated }))}
             onOpenAdmin={() => setActiveScreen('admin-dashboard')}
+            onOpenApkModal={() => setShowApkModal(true)}
           />
         )}
       </div>

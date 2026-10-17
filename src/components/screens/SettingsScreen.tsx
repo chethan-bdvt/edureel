@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Check,
   X,
+  Smartphone,
 } from 'lucide-react';
 import { UserProfile, GradeLevel } from '../../types';
 
@@ -19,6 +20,7 @@ interface SettingsScreenProps {
   currentGrade: GradeLevel;
   onUpdateProfile: (updated: Partial<UserProfile>) => void;
   onOpenAdmin: () => void;
+  onOpenApkModal?: () => void;
 }
 
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({
@@ -26,6 +28,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   currentGrade,
   onUpdateProfile,
   onOpenAdmin,
+  onOpenApkModal,
 }) => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState(userProfile.language || 'English');
@@ -146,6 +149,21 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           <span className="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20">
             {screenTimeLimit} min
           </span>
+        </div>
+
+        {/* Android APK & Install Portal */}
+        <div
+          onClick={onOpenApkModal}
+          className="p-3.5 flex items-center justify-between hover:bg-slate-750 cursor-pointer transition-colors bg-emerald-950/20"
+        >
+          <div className="flex items-center gap-3">
+            <Smartphone className="w-4 h-4 text-emerald-400" />
+            <div>
+              <span className="text-xs font-semibold text-emerald-300">Android APK & PWA Center</span>
+              <p className="text-[10px] text-slate-400">Install WebAPK, Generate APK, or Build Package</p>
+            </div>
+          </div>
+          <ChevronRight className="w-4 h-4 text-emerald-400" />
         </div>
 
         {/* Admin Portal Shortcut */}
