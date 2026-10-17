@@ -1,0 +1,6 @@
+{
+  "name": "LearnLoop",
+  "description": "Short educational videos, AI explanations, quizzes, and learning assistant for kids and students from Pre-K to Grade 8.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
